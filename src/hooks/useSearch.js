@@ -34,6 +34,7 @@ export function useSearch() {
 		search,
     setSearch,
 		error,
-    hasError
+    hasError,
+    isFirstSearch
 	}
 }
