@@ -4,6 +4,7 @@ export function useSearch() {
   const [search, setSearch] = useState('')
   const [error, setError] = useState('')
 	const isFirstSearch = useRef(true) // Sirve para persistir un estado en el tiempo sin refrescar el componente
+  const [isDirty, setIsDirty] = useState(false)
 
 	const hasError = (search) => {
 		if(isFirstSearch.current === true) {
@@ -35,6 +36,8 @@ export function useSearch() {
     setSearch,
 		error,
     hasError,
-    isFirstSearch
+    isFirstSearch,
+    isDirty,
+    setIsDirty
 	}
 }

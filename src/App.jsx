@@ -3,9 +3,10 @@ import { Movies } from "./components/Movies";
 import { useMovies } from "./hooks/useMovies";
 import { useSearch } from "./hooks/useSearch";
 import { useDebounce } from "./hooks/useDebounce";
+import { useRef, useState } from "react";
 
 function App() {
-  const { search, setSearch, error, hasError } = useSearch();
+  const { search, setSearch, error, hasError, isFirstSearch, isDirty, setIsDirty } = useSearch();
   const { movies, loading, getMovies } = useMovies({ search });
   const debounce = useDebounce()
 
@@ -36,10 +37,11 @@ function App() {
             onChange={handleChange}
             type="text"
             placeholder="Avengers, Star Wars, The matrix..."
+            onBlur={() => setIsDirty(true)}
           />
           <button type="submit">Buscar</button>
         </form>
-        {error && <p style={{ color: "red" }}>{error}</p>}
+        {error && isDirty ? <p style={{ color: "red" }}>{error}</p> : null}
       </header>
       <main>
         {loading ? (
@@ -47,7 +49,7 @@ function App() {
         ) : movies?.length > 0 ? (
           <Movies movies={movies} />
         ) : (
-          <p>No se encontrado peliculas de la busqueda</p>
+          isFirstSearch.current === false ? <p>No se encontrado peliculas de la busqueda</p> : null
         )}
       </main>
     </div>

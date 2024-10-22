@@ -38,3 +38,8 @@ form {
   border-radius: 8px;
   margin-top: 1rem;
 }
+
+.movie-header {
+  height: 60px;
+  margin-bottom: 5px;
+}

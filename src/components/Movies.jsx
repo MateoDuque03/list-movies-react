@@ -5,9 +5,13 @@ export function Movies ({ movies }) {
     <ul className="movies">
       {movies.map((movie) => (
         <li className="movie" key={movie.id}>
-          <h3>{movie.title}</h3>
-          <p>{movie.year}</p>
-          <img src={movie.urlImg} alt={movie.title} />
+          <div className="movie-header">
+            <h3>{movie.title}</h3>
+            <p>{movie.year}</p>
+          </div>
+          <div className="movie-content">
+            <img src={movie.urlImg} alt={movie.title} />
+          </div>
         </li>
       ))}
     </ul>
